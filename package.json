@@ -1,0 +1,21 @@
+{
+  "name": "MacConfig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update": "cp -R ~/.hammerspoon . && cp -R ~/.config/karabiner ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreGeng/MacConfig.git"
+  },
+  "keywords": [],
+  "author": "Andre Geng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreGeng/MacConfig/issues"
+  },
+  "homepage": "https://github.com/AndreGeng/MacConfig#readme"
+}
