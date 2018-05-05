@@ -1,11 +1,11 @@
 local hyperKey = require('hyperKey')
 local windowManagementModal = hs.hotkey.modal.new({}, "F17")
 
-windowManagementModal:bind({'ctrl'}, 'C', function()
+windowManagementModal:bind({}, 'escape', function()
   windowManagementModal:exit()
 end, nil)
 
-hyperKey:bind({}, "[", function()
+hyperKey:bind({}, "W", function()
   windowManagementModal:enter()
 end, nil)
 
@@ -23,8 +23,8 @@ function resize_win(direction)
         local f = win:frame()
         local screen = win:screen()
         local max = screen:frame()
-        local stepw = max.w/40
-        local steph = max.h/40
+        local stepw = max.w/20
+        local steph = max.h/20
         if direction == "right" then f.w = f.w+stepw end
         if direction == "left" then f.w = f.w-stepw end
         if direction == "up" then f.h = f.h-steph end
@@ -40,8 +40,8 @@ function resize_win(direction)
         if direction == "center" then f.x = (max.w-f.w)/2 f.y = (max.h-f.h)/2 end
         if direction == "fcenter" then f.x = stepw*5 f.y = steph*5 f.w = stepw*20 f.h = steph*20 end
         if direction == "fullscreen" then f = max end
-        if direction == "shrink" then f.x = f.x+stepw f.y = f.y+steph f.w = f.w-(stepw*2) f.h = f.h-(steph*2) end
-        if direction == "expand" then f.x = f.x-stepw f.y = f.y-steph f.w = f.w+(stepw*2) f.h = f.h+(steph*2) end
+        if direction == "shrink" then f.w = f.w-(stepw*2) f.h = f.h-(steph*2) end
+        if direction == "expand" then f.w = f.w+(stepw*2) f.h = f.h+(steph*2) end
         if direction == "mright" then f.x = f.x+stepw end
         if direction == "mleft" then f.x = f.x-stepw end
         if direction == "mup" then f.y = f.y-steph end
@@ -63,15 +63,17 @@ windowManagementModal:bind({}, "S", function() resize_win('halfdown') end, nil, 
 windowManagementModal:bind({}, "A", function() resize_win('halfleft') end, nil, function() resize_win('halfleft') end)
 windowManagementModal:bind({}, "D", function() resize_win('halfright') end, nil, function() resize_win('halfright') end)
 
+-- ikbc
+
 -- switch tabs
 local nextTab = function()
-  hs.eventtap.keyStroke({'cmd', 'shift'}, ']', 50000)
+    hs.eventtap.keyStroke({'cmd', 'shift'}, ']')
 end
-hyperKey:bind({}, "K", nextTab, nil, nextTab)
+hyperKey:bind({}, string.lower("k"), nextTab, nil)
 local previousTab = function()
-  hs.eventtap.keyStroke({'cmd', 'shift'}, '[', 50000)
+    hs.eventtap.keyStroke({'cmd', 'shift'}, '[')
 end
-hyperKey:bind({}, "J", previousTab , nil, previousTab)
+hyperKey:bind({}, string.lower("j"), previousTab , nil)
 
 -- toggle window within different monitor
 function sendWindowNextMonitor()
@@ -80,9 +82,14 @@ function sendWindowNextMonitor()
   win:moveToScreen(nextScreen)
 end
 hyperKey:bind({}, ";", sendWindowNextMonitor, nil)
+-- ikbc
+-- hs.hotkey.bind({}, 'home', sendWindowNextMonitor, nil)
 
 -- toggle window
 function toggleAppWindows()
-  hs.eventtap.keyStroke({'cmd', 'shift'}, '`', 50000)
+  -- local switcher = hs.window.switcher.new({hs.application.frontmostApplication():name()})
+  -- switcher:next()
+  hs.eventtap.keyStroke({'cmd'}, '`', 20000)
+  print('toggleAppWindows')
 end
-hyperKey:bind({}, "'", toggleAppWindows, nil, toggleAppWindows)
+hyperKey:bind({}, 'n',toggleAppWindows , nil)

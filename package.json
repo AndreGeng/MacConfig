@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "update": "cp -R ~/.hammerspoon . && cp -R ~/.config/karabiner ."
+    "backup": "cp -R ~/.hammerspoon . && cp -R ~/.config/karabiner .",
+    "sync": "rm -rf ~/.hammerspoon && rm -rf ~/config/karabiner && cp -R ./.hammerspoon ~ && cp -R ./karabiner ~/.config"
   },
   "repository": {
     "type": "git",

@@ -11,5 +11,5 @@ local hyperkeyTriggerReleased = function()
   hyperKey:exit()
 end
 
-local f19 = hs.hotkey.bind({}, 'F19', hyperkeyTriggerPressed, hyperkeyTriggerReleased);
+local f19 = hs.hotkey.bind({}, string.lower('F19'), hyperkeyTriggerPressed, hyperkeyTriggerReleased);
 return hyperKey
