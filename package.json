@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "backup": "cp -R ~/.hammerspoon . && cp -R ~/.config/karabiner . && cp -R ~/.zshrc . && cp -R ~/.config/nvim .",
-    "clean": "rm -rf ~/.hammerspoon && rm -rf ~/config/karabiner && rm ~/.zshrc && rm -rf ~/.config/nvim",
-    "sync": "npm run clean && cp -R ./.hammerspoon ~ && cp -R ./karabiner ~/.config && cp -R ~/.zshrc ~ && cp -R ~/nvim ~/.config"
+    "clean": "rm -rf ~/.hammerspoon && rm -rf ~/config/karabiner && rm -f ~/.zshrc && rm -rf ~/.config/nvim",
+    "sync": "npm run clean && cp -R ./.hammerspoon ~ && cp -R ./karabiner ~/.config && cp -R ./.zshrc ~ && cp -R ./nvim ~/.config"
   },
   "repository": {
     "type": "git",
