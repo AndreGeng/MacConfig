@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/andregeng/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -52,21 +52,24 @@ plugins=(git autojump zsh-syntax-highlighting)
 
 # User configuration
 
-export PATH="/Users/andregeng/.rvm/gems/ruby-2.2.1/bin:/Users/andregeng/.rvm/gems/ruby-2.2.1@global/bin:/Users/andregeng/.rvm/rubies/ruby-2.2.1/bin:/Users/andregeng/.nvm/versions/node/v6.2.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/andregeng/.rvm/bin"
+export PATH="$HOME/.rvm/gems/ruby-2.2.1/bin:$HOME/.rvm/gems/ruby-2.2.1@global/bin:$HOME/.rvm/rubies/ruby-2.2.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$(yarn global bin)"
 export JAVA_HOME="/Library/Java/Home"
-export ANDROID_HOME="/Users/andregeng/Library/Android/sdk"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$JAVA_HOME/bin"
 export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
-export PATH="$PATH:/Users/andregeng/.config/yarn/global/node_modules/.bin"
-export PATH="/Users/andregeng/.pyenv/bin:$PATH"
+export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
-source ~/.nvm/nvm.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -99,3 +102,4 @@ alias vim='nvim'
 alias ovim='vim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
