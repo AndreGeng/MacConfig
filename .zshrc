@@ -102,6 +102,7 @@ alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
 alias vi='nvim'
 alias vim='nvim'
 alias ovim='vim'
+alias mux='tmuxinator'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
