@@ -25,6 +25,9 @@ Plug 'henrik/vim-indexed-search'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
 " gist -- start
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
@@ -56,10 +59,27 @@ set number
 " color scheme
 set termguicolors
 colorscheme evening
+au FilterWritePre * if &diff | colorscheme apprentice | endif
 
 " fold method
 set foldmethod=syntax
 nnoremap <Space> za
+
+" diff ignore whitespace
+set diffopt+=iwhite
+
+" check one time after 4s of inactivity in normal mode
+set autoread
+
+au FocusGained,BufEnter,CursorHold * checktime
+
+" git shortcut
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>dt :windo diffthis<CR>
+nnoremap <leader>dc :windo diffoff<CR>
+nnoremap <leader>du :diffupdate<CR>
+nnoremap <leader>dg :diffget<CR>
+nnoremap <leader>du :diffput<CR>
 
 " smart way to close pane
 nnoremap <leader>q :q<CR>
@@ -78,6 +98,13 @@ nmap ∆ mz:m+<cr>`z
 nmap ˚ mz:m-2<cr>`z
 vmap ∆ :m'>+<cr>`<my`>mzgv`yo`z
 vmap ˚ :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove 
+map <leader>t<leader> :tabnext 
 
 "toggle quickfixlist/locationlist -- start
   function! GetBufferList()
@@ -112,6 +139,7 @@ vmap ˚ :m'<-2<cr>`>my`<mzgv`yo`z
   nmap <silent> <leader>l :call ToggleList("Location", 'l')<CR>
   nmap <silent> <leader>k :call ToggleList("Quickfix", 'c')<CR>
 "toggle quickfixlist/locationlist -- end
+
 
 " fold style
 """"""""""""""""""""""""""""""
