@@ -28,6 +28,14 @@ Plug 'junegunn/gv.vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'kana/vim-textobj-line'
+" snippet -- start
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+" snippet --end
 " gist -- start
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
@@ -60,6 +68,20 @@ set number
 set termguicolors
 colorscheme evening
 au FilterWritePre * if &diff | colorscheme apprentice | endif
+
+" indent
+set autoindent
+" use whitespace insteadof tab
+set expandtab
+
+" set tab width
+set softtabstop=2
+set shiftwidth=2
+set tabstop=2
+
+" search
+set ignorecase
+set smartcase
 
 " fold method
 set foldmethod=syntax
@@ -209,5 +231,19 @@ map <leader>af :Autoformat<CR>
 " gv.vim
 nnoremap <leader>gv :GV!<CR>
 vnoremap <leader>gv :GV!<CR>
+
+" ALE
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\   'javascript.jsx': ['eslint'],
+\}
+
+"Set this setting in vimrc if you want to fix files automatically on save.
+"This is off by default.
+" let g:ale_fix_on_save = 1
+nmap <leader>lf :ALEFix<CR>
+
+" tmux navigator: Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
 
 " plugin config -- end
