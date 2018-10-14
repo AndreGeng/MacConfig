@@ -103,6 +103,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias ovim='vim'
 alias mux='tmuxinator'
+alias ctags="`brew --prefix`/bin/ctags"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh

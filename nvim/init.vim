@@ -30,6 +30,21 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kana/vim-textobj-line'
+Plug 'tpope/vim-surround'
+" fix: can't use vim command under chinese input source
+Plug 'lyokha/vim-xkbswitch'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-snipmate'
+" ncm2 complete source -- start
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'wellle/tmux-complete.vim'
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'branch': 'next',
+  \ 'do': 'bash install.sh',
+  \ }
+" ncm2 complete source --end
 " snippet -- start
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -107,8 +122,8 @@ nnoremap <leader>du :diffput<CR>
 nnoremap <leader>q :q<CR>
 
 " setup nvim with python support
-let g:python_host_prog = '/Users/andregeng/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/andregeng/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
 
 " map extension to filetype
 autocmd BufEnter *.less.module :setlocal filetype=less
@@ -245,5 +260,23 @@ nmap <leader>lf :ALEFix<CR>
 
 " tmux navigator: Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANTE: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+" LSP
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': [expand('`npm get prefix`/bin/javascript-typescript-stdio')],
+    \ 'javascript.jsx': [expand('`npm get prefix`/bin/javascript-typescript-stdio')],
+    \ }
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" xkbswitch
+let g:XkbSwitchEnabled = 1
 
 " plugin config -- end
