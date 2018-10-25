@@ -4,6 +4,8 @@
 "
 
 call plug#begin('~/.vim/plugged')
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-scripts/bufexplorer.zip'
@@ -14,7 +16,6 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
 Plug 'terryma/vim-expand-region'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'itchyny/lightline.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'jiangmiao/auto-pairs'
@@ -31,6 +32,8 @@ Plug 'kana/vim-textobj-entire'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kana/vim-textobj-line'
 Plug 'tpope/vim-surround'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'wellle/targets.vim'
 " fix: can't use vim command under chinese input source
 Plug 'lyokha/vim-xkbswitch'
 Plug 'ncm2/ncm2'
@@ -72,6 +75,9 @@ nmap <leader>w :w!<cr>
 
 " copy to system clipboard
 set clipboard+=unnamedplus
+
+" jump between unsaved buffers without the E37
+set hidden
 
 " set lazyredraw, makes nvim smooth in tmux
 set lazyredraw
@@ -131,10 +137,10 @@ autocmd BufEnter *.wxml :setlocal filetype=html
 autocmd BufEnter *.wxss :setlocal filetype=css
 
 " Move a line of text using ALT+[jk]
-nmap ∆ mz:m+<cr>`z
-nmap ˚ mz:m-2<cr>`z
-vmap ∆ :m'>+<cr>`<my`>mzgv`yo`z
-vmap ˚ :m'<-2<cr>`>my`<mzgv`yo`z
+nmap <m-i> mz:m+<cr>`z
+nmap <m-o> mz:m-2<cr>`z
+vmap <m-i> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <m-o> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
@@ -278,5 +284,8 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " xkbswitch
 let g:XkbSwitchEnabled = 1
+
+" bufexplorer
+let g:bufExplorerShowRelativePath=1
 
 " plugin config -- end
