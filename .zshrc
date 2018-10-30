@@ -64,6 +64,7 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 # export MANPATH="/usr/local/man:$MANPATH"
+export FZF_DEFAULT_COMMAND='fd --type f'
 
 source $ZSH/oh-my-zsh.sh
 

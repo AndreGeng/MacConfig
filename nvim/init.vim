@@ -17,8 +17,9 @@ set relativenumber
 
 " color scheme
 set termguicolors
-colorscheme evening
-au FilterWritePre * if &diff | colorscheme apprentice | endif
+colorscheme evening 
+autocmd BufEnter,SourcePre * highlight Search guibg=none guifg=#50FA7B gui=underline
+autocmd FilterWritePre * if &diff | colorscheme apprentice | endif
 
 " indent
 set autoindent
@@ -45,7 +46,7 @@ set diffopt+=iwhite
 
 " check one time after 4s of inactivity in normal mode
 set autoread
-au FocusGained,BufEnter,CursorHold * checktime
+autocmd FocusGained,BufEnter,CursorHold * checktime
 
 " setup nvim with python support
 let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
@@ -62,7 +63,7 @@ autocmd BufEnter *.wxss :setlocal filetype=css
 " vimscript file setting
 augroup filetype_vim
   autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
+  autocmd FileType,SourcePre *.vim :setlocal foldmethod=marker
 augroup END
 
 " fold style
@@ -95,6 +96,8 @@ endfunction
 " Custom mapping {{{
 " Fast saving
 nmap <leader>w :w!<cr>
+" Quick open vimrc
+nnoremap <leader>ev :rightbelow vsplit $MYVIMRC<cr>
 " smart way to close pane
 nnoremap <leader>q :q<CR>
 
@@ -153,6 +156,12 @@ map <leader>t<leader> :tabnext
   nmap <silent> <leader>k :call ToggleList("Quickfix", 'c')<CR>
 "toggle quickfixlist/locationlist -- end
 
+" always open quickfix window at bottom
+augroup DragQuickfixWindowDown
+  autocmd!
+  autocmd FileType qf wincmd J
+augroup end
+
 " }}}
 
 " Plugins {{{
@@ -181,12 +190,17 @@ Plug 'junegunn/gv.vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-lastpat'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'wellle/targets.vim'
 Plug 'moll/vim-node'
+Plug 'tpope/vim-unimpaired'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'tpope/vim-abolish'
 " fix: can't use vim command under chinese input source
 Plug 'lyokha/vim-xkbswitch'
 Plug 'ncm2/ncm2'
@@ -229,9 +243,9 @@ map <leader>nf :NERDTreeFind<cr>
 " enable ctrl+j/k to switch panel in nerdtree
 let g:NERDTreeMapJumpNextSibling = '<Nop>'
 let g:NERDTreeMapJumpPrevSibling = '<Nop>'
-"fzf
+" fzf
 nmap <leader>f :Files<CR>
-"Ack
+" Ack
 nmap <leader>a :Ack -i 
 
 " expand region shortcut 
@@ -298,5 +312,32 @@ let g:XkbSwitchEnabled = 1
 
 " bufexplorer
 let g:bufExplorerShowRelativePath=1
+
+" bookmarks, avoid conflicts with nerdtree
+let g:bookmark_no_default_key_mappings = 1
+function! BookmarkMapKeys()
+    nmap mm :BookmarkToggle<CR>
+    nmap mi :BookmarkAnnotate<CR>
+    nmap mn :BookmarkNext<CR>
+    nmap mp :BookmarkPrev<CR>
+    nmap ma :BookmarkShowAll<CR>
+    nmap mc :BookmarkClear<CR>
+    nmap mx :BookmarkClearAll<CR>
+    nmap mkk :BookmarkMoveUp
+    nmap mjj :BookmarkMoveDown
+endfunction
+function! BookmarkUnmapKeys()
+    unmap mm
+    unmap mi
+    unmap mn
+    unmap mp
+    unmap ma
+    unmap mc
+    unmap mx
+    unmap mkk
+    unmap mjj
+endfunction
+autocmd FocusGained,BufEnter * :call BookmarkMapKeys()
+autocmd FocusGained,BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 
 " }}}
