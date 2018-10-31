@@ -66,6 +66,11 @@ augroup filetype_vim
   autocmd FileType,SourcePre *.vim :setlocal foldmethod=marker
 augroup END
 
+" set include path for javascript files, enable <c-x><c-i>
+autocmd FileType javascript,javascript.jsx call <SID>JavaScriptInclude()
+function! s:JavaScriptInclude()
+  let &l:include='\v%(require\(|from)\s*(["''])\zs[^\1]+\ze\1'
+endfunction
 " fold style
 """"""""""""""""""""""""""""""
 " => JavaScript section
