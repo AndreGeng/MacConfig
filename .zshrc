@@ -102,7 +102,7 @@ alias chrome="open -a 'Google Chrome'"
 alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
 alias vi='nvim'
 alias vim='nvim'
-alias ovim='vim'
+alias ovim='\vim'
 alias mux='tmuxinator'
 alias ctags="`brew --prefix`/bin/ctags"
 
