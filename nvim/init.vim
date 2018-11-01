@@ -66,7 +66,7 @@ autocmd BufEnter *.wxss :setlocal filetype=css
 " vimscript file setting
 augroup filetype_vim
   autocmd!
-  autocmd FileType,SourcePre *.vim :setlocal foldmethod=marker
+  autocmd FileType,SourcePre vim :setlocal foldmethod=marker
 augroup END
 
 " set include path for javascript files, enable <c-x><c-i>
@@ -78,15 +78,15 @@ endfunction
 """"""""""""""""""""""""""""""
 " => JavaScript section
 """""""""""""""""""""""""""""""
-au FileType javascript call JavaScriptFold()
-au FileType javascript setl fen
-au FileType javascript setl nocindent
+autocmd FileType javascript,javascript.jsx call JavaScriptFold()
+autocmd FileType javascript setl fen
+autocmd FileType javascript setl nocindent
 
-au FileType javascript imap <c-t> $log();<esc>hi
-au FileType javascript imap <c-a> alert();<esc>hi
+autocmd FileType javascript imap <c-t> $log();<esc>hi
+autocmd FileType javascript imap <c-a> alert();<esc>hi
 
-au FileType javascript inoremap <buffer> $r return 
-au FileType javascript inoremap <buffer> $f // --- PH<esc>FP2xi
+autocmd FileType javascript inoremap <buffer> $r return 
+autocmd FileType javascript inoremap <buffer> $f // --- PH<esc>FP2xi
 
 function! JavaScriptFold() 
     setl foldmethod=syntax
@@ -116,6 +116,9 @@ nnoremap <leader>dc :windo diffoff<CR>
 nnoremap <leader>du :diffupdate<CR>
 nnoremap <leader>dg :diffget<CR>
 nnoremap <leader>du :diffput<CR>
+
+" buffer explorer
+nnoremap <leader>be :Buffers<CR>
 
 " Move a line of text using ALT+[jk]
 nmap <m-i> mz:m+<cr>`z
@@ -177,7 +180,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'mg979/vim-visual-multi'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'vim-scripts/bufexplorer.zip'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
