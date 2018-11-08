@@ -66,7 +66,7 @@ autocmd BufEnter *.wxss :setlocal filetype=css
 " vimscript file setting
 augroup filetype_vim
   autocmd!
-  autocmd FileType,SourcePre vim :setlocal foldmethod=marker
+  autocmd FileType,SourcePre *.vim :setlocal foldmethod=marker
 augroup END
 
 " set include path for javascript files, enable <c-x><c-i>
@@ -119,6 +119,9 @@ nnoremap <leader>du :diffput<CR>
 
 " buffer explorer
 nnoremap <leader>be :Buffers<CR>
+
+" cmdline mapping
+cnoremap <C-A> <Home>
 
 " Move a line of text using ALT+[jk]
 nmap <m-i> mz:m+<cr>`z
@@ -211,6 +214,8 @@ Plug 'moll/vim-node'
 Plug 'tpope/vim-unimpaired'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'tpope/vim-abolish'
+Plug 'troydm/zoomwintab.vim'
+Plug 'tpope/vim-dispatch'
 " fix: can't use vim command under chinese input source
 Plug 'lyokha/vim-xkbswitch'
 Plug 'ncm2/ncm2'
@@ -351,3 +356,4 @@ autocmd FocusGained,BufEnter * :call BookmarkMapKeys()
 autocmd FocusGained,BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 
 " }}}
+
