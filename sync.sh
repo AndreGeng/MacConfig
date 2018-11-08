@@ -9,4 +9,4 @@ cp -R ./karabiner ~/.config
 cp -R ./.zshrc ~
 cp -R ./nvim ~/.config
 cp -R ./alacritty ~/.config
-cp -R ./.tmux.config ~
+cp -R ./.tmux.conf ~
